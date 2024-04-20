@@ -58,8 +58,15 @@ public class Player {
         return chipCount;
     }
 
-    public void setChipCount(Double chipCount) {
+    public void setChipCount(Double bigBlind, Double chipCount) {
         this.chipCount = chipCount;
+        setChipsInBigBlind(bigBlind);
+    }
+
+    public void setChipsInBigBlind(Double bigBlindFromHand) {
+        if (this.chipCount != null) {
+            this.chipsInBigBlind = String.format("%.2f", this.chipCount / bigBlindFromHand);
+        }
     }
 
     public String getChipsInBigBlind() {

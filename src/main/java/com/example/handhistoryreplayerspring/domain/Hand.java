@@ -59,4 +59,8 @@ public class Hand {
     public List<Player> getPlayers() {
         return players;
     }
+
+    public void addCard(String card) {
+        this.cards.add(card);
+    }
 }
