@@ -1,5 +1,6 @@
 package com.example.handhistoryreplayerspring.controller;
 
+import com.example.handhistoryreplayerspring.dto.UserDto;
 import com.example.handhistoryreplayerspring.service.FileReaderService;
 import com.example.handhistoryreplayerspring.service.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/file")
+@CrossOrigin(origins = "http://localhost:4200")
 public class FileController {
 
     private final FileReaderService fileReaderService;
@@ -34,8 +36,9 @@ public class FileController {
     }
 
     @GetMapping("")
-    public void getFile() throws IOException {
+    public UserDto getFile() throws IOException {
         this.fileReaderService.readFromFile();
+        return new UserDto("1", "Zsuzsi", "email");
     }
 
 }
