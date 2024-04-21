@@ -26,6 +26,4 @@ public class BasicHandDataService {
         hand.addCard(line.substring(line.length() - 3, line.length() - 1));
     }
 
-
-
 }

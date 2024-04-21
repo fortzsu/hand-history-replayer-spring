@@ -39,10 +39,6 @@ public class Player {
         return seatNumber;
     }
 
-    public void setSeatNumber(Integer seatNumber) {
-        this.seatNumber = seatNumber;
-    }
-
     public String getPlayerName() {
         return playerName;
     }
