@@ -36,15 +36,26 @@ public class HandService {
         this.playerService = playerService;
     }
 
-    public Integer saveHand(List<String> originalLines) {
+    public Hand saveHand(List<String> originalLines, Integer id) {
         Hand hand = new Hand();
-        this.basicHandDataService.setCurrentButton("Table '3713502695 1' 9-max Seat #1 is the button", hand);
-        this.basicHandDataService.setBigBlind("ZombiChicken: posts big blind 20", hand);
-        this.basicHandDataService.setCards("Dealt to ZombiChicken [3c 4h]", hand);
+        hand.setId(id);
+        String cards = "";
+        for (String originalLine : originalLines) {
+            if (originalLine.contains("posts big blind")) {
+                this.basicHandDataService.setBigBlind(originalLine, hand);
+            }
+            if (originalLine.contains("is the button")) {
+                this.basicHandDataService.setCurrentButton(originalLine, hand);
+            }
+            if (originalLine.contains("Dealt to ZombiChicken")) {
+                cards = originalLine;
+                this.basicHandDataService.setCards(originalLine, hand);
+            }
+        }
 
         this.handRepository.save(hand);
-        Player player = this.playerService.fillPlayers(new ArrayList<>(), hand);
-        hand.getPlayers().add(player);
+        List<Player> players = this.playerService.fillPlayers(originalLines, hand);
+        hand.setPlayers(players);
 
 
 
@@ -54,7 +65,7 @@ public class HandService {
 //        action.setPlayer(player);
 //        this.actionRepository.save(action);
 
-        return this.handRepository.findAll().get(0).getCurrentButton();
+        return hand;
     }
 
 

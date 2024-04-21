@@ -6,6 +6,7 @@ import com.example.handhistoryreplayerspring.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,14 +19,16 @@ public class PlayerService {
         this.playerRepository = playerRepository;
     }
 
-    public Player fillPlayers(List<String> originalLines, Hand hand) {
+    public List<Player> fillPlayers(List<String> originalLines, Hand hand) {
         Player temp = new Player();
+        List<Player> playerList = new ArrayList<>();
         for (String originalLine : originalLines) {
             if (originalLine.contains("Seat") && originalLine.contains("chips")) {
                 temp = setPlayerFields(originalLine, hand);
+                playerList.add(temp);
             }
         }
-        return temp;
+        return playerList;
     }
 
     private Player setPlayerFields(String originalDataLines, Hand hand) {

@@ -1,26 +1,26 @@
 package com.example.handhistoryreplayerspring.controller;
 
-import com.example.handhistoryreplayerspring.service.HandService;
+import com.example.handhistoryreplayerspring.service.FileReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/file")
 public class FileController {
 
-    private final HandService handService;
+    private final FileReaderService fileReaderService;
 
     @Autowired
-    public FileController(HandService handService) {
-        this.handService = handService;
+    public FileController(FileReaderService fileReaderService) {
+        this.fileReaderService = fileReaderService;
     }
 
     @GetMapping("")
-    public void getFile() {
-        System.out.println(this.handService.saveHand(new ArrayList<>()));
+    public void getFile() throws IOException {
+        this.fileReaderService.readFromFile();
     }
 }

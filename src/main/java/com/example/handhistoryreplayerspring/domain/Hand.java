@@ -19,7 +19,7 @@ public class Hand {
     private final List<String> cards = new ArrayList<>();
     @Column
     @OneToMany
-    private final List<Player> players = new ArrayList<>();
+    private List<Player> players = new ArrayList<>();
     public Integer getId() {
         return id;
     }
@@ -30,6 +30,10 @@ public class Hand {
 
     public Double getBigBlind() {
         return bigBlind;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
     }
 
     public void setBigBlind(Double bigBlind) {
