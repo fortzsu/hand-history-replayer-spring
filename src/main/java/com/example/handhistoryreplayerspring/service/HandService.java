@@ -56,7 +56,7 @@ public class HandService {
         hand.setPlayers(players);
         generatePositionsToPlayersInHand(hand);
 
-        this.actionService.createAction(originalLines, cards, players);
+        this.actionService.createAction(originalLines, cards, players, hand);
 
 
         return hand;
@@ -70,8 +70,8 @@ public class HandService {
         this.positionGeneratorService.findPosition(players, defaultPositions, currentButton);
     }
 
-    public List<Action> findActionsByPlayer(Player player) {
-        return this.actionService.findActionsByPlayer(player);
+    public List<Action> findActionsByPlayer(Hand hand) {
+        return this.actionService.findActionsByPlayer(hand);
     }
 
 }

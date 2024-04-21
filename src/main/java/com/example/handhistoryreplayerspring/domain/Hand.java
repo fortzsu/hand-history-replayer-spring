@@ -20,6 +20,10 @@ public class Hand {
     @Column
     @OneToMany
     private List<Player> players = new ArrayList<>();
+
+    @Column
+    @OneToMany
+    private List<Action> actions = new ArrayList<>();
     public Integer getId() {
         return id;
     }
@@ -66,5 +70,13 @@ public class Hand {
 
     public void addCard(String card) {
         this.cards.add(card);
+    }
+
+    public List<Action> getActions() {
+        return actions;
+    }
+
+    public void setActions(List<Action> actions) {
+        this.actions = actions;
     }
 }

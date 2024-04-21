@@ -31,16 +31,16 @@ public class FileReaderService {
         List<Hand> hands = findOriginalDataBlocks(lines);
         for (Hand hand : hands) {
             System.out.println(hand.getId());
-            System.out.println(hand.getCurrentButton());
-            System.out.println(hand.getCards());
+//            System.out.println(hand.getCurrentButton());
+//            System.out.println(hand.getCards());
+            List<Action> actionsByPlayer = this.handService.findActionsByPlayer(hand);
+            for (Action dto : actionsByPlayer) {
+                System.out.println(dto.getPlayer().getPlayerName() + " - " + dto.getAction());
+            }
             for (Player player : hand.getPlayers()) {
-                System.out.println(player.getPlayerName());
-                System.out.println(player.getSeatNumber());
-                System.out.println(player.getNameOfPosition());
-                List<Action> actions = this.handService.findActionsByPlayer(player);
-                for (Action action : actions) {
-                    System.out.println(action.getPlayer().getPlayerName() + " - " + action.getAction());
-                }
+                System.out.println(player.getPlayerName() + " : " + player.getNameOfPosition());
+//                System.out.println(player.getSeatNumber());
+//                System.out.println(player.getNameOfPosition());
             }
             System.out.println("**************************************************");
         }

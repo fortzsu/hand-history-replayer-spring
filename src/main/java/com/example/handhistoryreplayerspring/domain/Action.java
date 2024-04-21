@@ -10,12 +10,22 @@ public class Action {
     private Integer id;
     @Column
     private String action;
-
+    @ManyToOne
+    @JoinColumn(name = "hand")
+    private Hand hand;
     @ManyToOne
     @JoinColumn(name = "player")
     private Player player;
 
     public Action() {
+    }
+
+    public Hand getHand() {
+        return hand;
+    }
+
+    public void setHand(Hand hand) {
+        this.hand = hand;
     }
 
     public Integer getId() {
