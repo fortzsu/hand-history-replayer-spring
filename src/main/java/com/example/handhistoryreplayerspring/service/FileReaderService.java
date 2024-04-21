@@ -26,7 +26,7 @@ public class FileReaderService {
     }
 
     public List<Hand> readFromFile() throws IOException {
-        Path path = Paths.get("C:\\Users\\Zsuzsi\\Desktop\\Idea\\hand-history-replayer-spring\\src\\main\\resources\\text_file.txt");
+        Path path = Paths.get("C:\\Users\\Zsuzsi\\Desktop\\Idea\\hand-history-replayer-spring\\src\\main\\resources\\text.txt");
         List<String> lines = Files.readAllLines(path);
         List<Hand> hands = findOriginalDataBlocks(lines);
         for (Hand hand : hands) {
