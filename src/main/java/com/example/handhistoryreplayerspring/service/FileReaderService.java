@@ -1,6 +1,7 @@
 package com.example.handhistoryreplayerspring.service;
 
 import com.example.handhistoryreplayerspring.domain.Hand;
+import com.example.handhistoryreplayerspring.domain.Player;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +32,12 @@ public class FileReaderService {
             System.out.println(hand.getId());
             System.out.println(hand.getCurrentButton());
             System.out.println(hand.getCards());
-            System.out.println(hand.getPlayers().size());
+            for (Player player : hand.getPlayers()) {
+                System.out.println(player.getPlayerName());
+                System.out.println(player.getSeatNumber());
+                System.out.println(player.getNameOfPosition());
+            }
+            System.out.println("**************************************************");
         }
         return hands;
     }

@@ -56,10 +56,7 @@ public class HandService {
         this.handRepository.save(hand);
         List<Player> players = this.playerService.fillPlayers(originalLines, hand);
         hand.setPlayers(players);
-
-
-
-//        generatePositionsToPlayersInHand(hand);
+        generatePositionsToPlayersInHand(hand);
 
 //        Action action = new Action();
 //        action.setPlayer(player);
@@ -76,18 +73,5 @@ public class HandService {
         List<Position> defaultPositions = Arrays.stream(Position.values()).toList();
         this.positionGeneratorService.findPosition(players, defaultPositions, currentButton);
     }
-
-
-    private boolean checkIfPlayersPositionIsTaken(Integer seatNumber, List<Player> players) {
-        for (Player player : players) {
-            if (player.getSeatNumber().equals(seatNumber)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-
-
 
 }

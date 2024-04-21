@@ -12,7 +12,7 @@ import java.util.Map;
 @Service
 public class PositionGeneratorService {
 
-    public Map<Integer, String> findPosition(List<Player> players, List<Position> defaultPositions,
+    public void findPosition(List<Player> players, List<Position> defaultPositions,
                                              Integer currentButton) {
         Map<Integer, String> orderOfCurrentPositions = new HashMap<>();
         if (players.size() == 2) {
@@ -20,7 +20,10 @@ public class PositionGeneratorService {
         } else {
             addPositionWhenThereAreMorePlayers(orderOfCurrentPositions, currentButton, defaultPositions, players);
         }
-        return orderOfCurrentPositions;
+        for (Player player : players) {
+            player.setNameOfPosition(orderOfCurrentPositions.get(player.getSeatNumber()));
+        }
+
     }
 
 
