@@ -1,5 +1,6 @@
 package com.example.handhistoryreplayerspring.service;
 
+import com.example.handhistoryreplayerspring.domain.Action;
 import com.example.handhistoryreplayerspring.domain.Hand;
 import com.example.handhistoryreplayerspring.domain.Player;
 import com.example.handhistoryreplayerspring.domain.Position;
@@ -57,6 +58,7 @@ public class HandService {
 
         this.actionService.createAction(originalLines, cards, players);
 
+
         return hand;
     }
 
@@ -66,6 +68,10 @@ public class HandService {
         Integer currentButton = hand.getCurrentButton();
         List<Position> defaultPositions = Arrays.stream(Position.values()).toList();
         this.positionGeneratorService.findPosition(players, defaultPositions, currentButton);
+    }
+
+    public List<Action> findActionsByPlayer(Player player) {
+        return this.actionService.findActionsByPlayer(player);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.handhistoryreplayerspring.service;
 
+import com.example.handhistoryreplayerspring.domain.Action;
 import com.example.handhistoryreplayerspring.domain.Hand;
 import com.example.handhistoryreplayerspring.domain.Player;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,10 @@ public class FileReaderService {
                 System.out.println(player.getPlayerName());
                 System.out.println(player.getSeatNumber());
                 System.out.println(player.getNameOfPosition());
+                List<Action> actions = this.handService.findActionsByPlayer(player);
+                for (Action action : actions) {
+                    System.out.println(action.getPlayer().getPlayerName() + " - " + action.getAction());
+                }
             }
             System.out.println("**************************************************");
         }
@@ -67,8 +72,6 @@ public class FileReaderService {
     }
 
     public Hand fillHands(Integer id, List<String> originalLines) {
-        Hand hand = this.handService.saveHand(originalLines, id);
-
-        return hand;
+        return this.handService.saveHand(originalLines, id);
     }
 }

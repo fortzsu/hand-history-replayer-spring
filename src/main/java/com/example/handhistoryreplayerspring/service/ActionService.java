@@ -61,4 +61,8 @@ public class ActionService {
         this.actionRepository.save(action);
     }
 
+    public List<Action> findActionsByPlayer(Player player) {
+        return this.actionRepository.findActionsByPlayer(player);
+    }
+
 }
