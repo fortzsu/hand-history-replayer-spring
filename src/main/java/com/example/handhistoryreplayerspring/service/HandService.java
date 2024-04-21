@@ -1,16 +1,13 @@
 package com.example.handhistoryreplayerspring.service;
 
-import com.example.handhistoryreplayerspring.domain.Action;
 import com.example.handhistoryreplayerspring.domain.Hand;
 import com.example.handhistoryreplayerspring.domain.Player;
 import com.example.handhistoryreplayerspring.domain.Position;
-import com.example.handhistoryreplayerspring.repository.ActionRepository;
 import com.example.handhistoryreplayerspring.repository.HandRepository;
 import com.example.handhistoryreplayerspring.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,21 +16,21 @@ public class HandService {
 
     private final PlayerRepository playerRepository;
     private final HandRepository handRepository;
-    private final ActionRepository actionRepository;
     private final BasicHandDataService basicHandDataService;
     private final PositionGeneratorService positionGeneratorService;
     private final PlayerService playerService;
+    private final ActionService actionService;
 
     @Autowired
     public HandService(PlayerRepository playerRepository, HandRepository handRepository,
-                       ActionRepository actionRepository, BasicHandDataService basicHandDataService,
-                       PositionGeneratorService positionGeneratorService, PlayerService playerService) {
+                       BasicHandDataService basicHandDataService,
+                       PositionGeneratorService positionGeneratorService, PlayerService playerService, ActionService actionService) {
         this.playerRepository = playerRepository;
         this.handRepository = handRepository;
-        this.actionRepository = actionRepository;
         this.basicHandDataService = basicHandDataService;
         this.positionGeneratorService = positionGeneratorService;
         this.playerService = playerService;
+        this.actionService = actionService;
     }
 
     public Hand saveHand(List<String> originalLines, Integer id) {
@@ -58,13 +55,10 @@ public class HandService {
         hand.setPlayers(players);
         generatePositionsToPlayersInHand(hand);
 
-//        Action action = new Action();
-//        action.setPlayer(player);
-//        this.actionRepository.save(action);
+        this.actionService.createAction(originalLines, cards, players);
 
         return hand;
     }
-
 
 
     private void generatePositionsToPlayersInHand(Hand hand) {

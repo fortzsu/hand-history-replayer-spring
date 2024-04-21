@@ -68,12 +68,7 @@ public class FileReaderService {
 
     public Hand fillHands(Integer id, List<String> originalLines) {
         Hand hand = this.handService.saveHand(originalLines, id);
-//
-//        List<String> allOriginalActionLines = findActionsFromOriginalLines(originalLines.indexOf(cards) + 1, originalLines);
-//        fillHandsPlayerActions(allOriginalActionLines, hand);
-//        System.out.println(hand.getAllPlayerActions());
-//
-//        hand.findCurrentPlayerPosition();
+
         return hand;
     }
 }
