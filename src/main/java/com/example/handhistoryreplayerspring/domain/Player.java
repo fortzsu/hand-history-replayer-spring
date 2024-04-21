@@ -27,6 +27,11 @@ public class Player {
     @OneToMany
     private List<Action> actions;
 
+    public Player(Integer seatNumber, String playerName) {
+        this.seatNumber = seatNumber;
+        this.playerName = playerName;
+    }
+
     public Player() {
     }
 
@@ -58,21 +63,6 @@ public class Player {
         return chipCount;
     }
 
-    public void setChipCount(Double bigBlind, Double chipCount) {
-        this.chipCount = chipCount;
-        setChipsInBigBlind(bigBlind);
-    }
-
-    public void setChipsInBigBlind(Double bigBlindFromHand) {
-        if (this.chipCount != null) {
-            this.chipsInBigBlind = String.format("%.2f", this.chipCount / bigBlindFromHand);
-        }
-    }
-
-    public String getChipsInBigBlind() {
-        return chipsInBigBlind;
-    }
-
     public void setChipsInBigBlind(String chipsInBigBlind) {
         this.chipsInBigBlind = chipsInBigBlind;
     }
@@ -99,5 +89,17 @@ public class Player {
 
     public void setActions(List<Action> actions) {
         this.actions = actions;
+    }
+
+    public void setChipCount(Double bigBlind, Double chipCount) {
+        this.chipCount = chipCount;
+        setChipsInBigBlind(bigBlind);
+    }
+
+
+    public void setChipsInBigBlind(Double bigBlindFromHand) {
+        if (this.chipCount != null) {
+            this.chipsInBigBlind = String.format("%.2f", this.chipCount / bigBlindFromHand);
+        }
     }
 }

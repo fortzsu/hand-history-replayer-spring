@@ -18,31 +18,14 @@ public class PlayerService {
         this.playerRepository = playerRepository;
     }
 
-
-    public Player savePlayer(Integer seatNumber, String playerName, Double chipCount, Hand hand) {
-        this.playerRepository.save(player);
-
-        Player tempPlayer = null;
-        if (checkIfPlayersPositionIsTaken(seatNumber)) {
-            tempPlayer = new Player(seatNumber, playerName);
-            this.players.add(tempPlayer);
-            player.setHand(hand);
-            setChipCount(tempPlayer, chipCount);
-        }
-        return tempPlayer;
-        return player;
-    }
-
-    public Player addNewPlayer() {
-
-    }
-
-    private void fillPlayers(List<String> originalLines, Hand hand) {
+    public Player fillPlayers(List<String> originalLines, Hand hand) {
+        Player temp = new Player();
         for (String originalLine : originalLines) {
             if (originalLine.contains("Seat") && originalLine.contains("chips")) {
-                setPlayerFields(originalLine, hand);
+                temp = setPlayerFields(originalLine, hand);
             }
         }
+        return temp;
     }
 
     private Player setPlayerFields(String originalDataLines, Hand hand) {
@@ -53,9 +36,33 @@ public class PlayerService {
         String player = originalDataLines.substring(index + 2, playerIndex);
         String betweenParenthesis = originalDataLines.substring(originalDataLines.indexOf("("), originalDataLines.indexOf(")") + 1);
         double chipCount = Double.parseDouble(betweenParenthesis.substring(1, betweenParenthesis.indexOf(" ")));
-        return hand.addNewPlayer(seat, player, chipCount);
+        return this.savePlayer(hand, seat, player, chipCount);
     }
 
+
+    public Player savePlayer(Hand hand, Integer seatNumber, String playerName, Double chipCount) {
+        Player tempPlayer = null;
+        if (checkIfPlayersPositionIsTaken(seatNumber, hand)) {
+            tempPlayer = new Player(seatNumber, playerName);
+            tempPlayer.setHand(hand);
+            setChipCount(tempPlayer, chipCount, hand);
+            this.playerRepository.save(tempPlayer);
+        }
+        return tempPlayer;
+    }
+
+    private void setChipCount(Player tempPlayer, Double chipCount, Hand hand) {
+        tempPlayer.setChipCount(hand.getBigBlind(), chipCount);
+    }
+
+    private boolean checkIfPlayersPositionIsTaken(Integer seatNumber, Hand hand) {
+        for (Player player : hand.getPlayers()) {
+            if (player.getSeatNumber().equals(seatNumber)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
 
 

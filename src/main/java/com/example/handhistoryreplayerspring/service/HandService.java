@@ -10,6 +10,7 @@ import com.example.handhistoryreplayerspring.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,24 +36,25 @@ public class HandService {
         this.playerService = playerService;
     }
 
-    public Integer saveHand() {
+    public Integer saveHand(List<String> originalLines) {
         Hand hand = new Hand();
         this.basicHandDataService.setCurrentButton("Table '3713502695 1' 9-max Seat #1 is the button", hand);
         this.basicHandDataService.setBigBlind("ZombiChicken: posts big blind 20", hand);
         this.basicHandDataService.setCards("Dealt to ZombiChicken [3c 4h]", hand);
 
         this.handRepository.save(hand);
-        Player player = this.playerService.savePlayer(hand);
-        this.
+        Player player = this.playerService.fillPlayers(new ArrayList<>(), hand);
+        hand.getPlayers().add(player);
+
 
 
 //        generatePositionsToPlayersInHand(hand);
 
-        Action action = new Action();
-        action.setPlayer(player);
-        this.actionRepository.save(action);
+//        Action action = new Action();
+//        action.setPlayer(player);
+//        this.actionRepository.save(action);
 
-        return this.handRepository.findAll().size();
+        return this.handRepository.findAll().get(0).getCurrentButton();
     }
 
 
@@ -74,9 +76,7 @@ public class HandService {
         return true;
     }
 
-    private void setChipCount(Player tempPlayer, Double chipCount, Hand hand) {
-        tempPlayer.setChipCount(hand.getBigBlind(), chipCount);
-    }
+
 
 
 }

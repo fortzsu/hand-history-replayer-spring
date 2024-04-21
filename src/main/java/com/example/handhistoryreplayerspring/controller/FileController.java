@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+
 @RestController
 @RequestMapping("/api/file")
 public class FileController {
@@ -19,6 +21,6 @@ public class FileController {
 
     @GetMapping("")
     public void getFile() {
-        System.out.println(this.handService.saveHand());
+        System.out.println(this.handService.saveHand(new ArrayList<>()));
     }
 }
