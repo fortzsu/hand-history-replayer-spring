@@ -28,7 +28,6 @@ public class FileController {
     @PostMapping("/uploadFile")
     public void uploadFile(@RequestParam("text") MultipartFile file) {
         String fileName = fileStorageService.storeFile(file);
-
         ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/resources")
                 .path(fileName)
@@ -38,7 +37,7 @@ public class FileController {
     @GetMapping("")
     public UserDto getFile() throws IOException {
         this.fileReaderService.readFromFile();
-        return new UserDto("1", "Zsuzsi", "email");
+        return new UserDto("1", "name", "email");
     }
 
 }
