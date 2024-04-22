@@ -35,10 +35,5 @@ public class FileController {
         this.fileReaderService.readFromFile();
     }
 
-    @GetMapping("")
-    public UserDto getFile() throws IOException {
-        this.fileReaderService.readFromFile();
-        return new UserDto("1", "name", "email");
-    }
 
 }
