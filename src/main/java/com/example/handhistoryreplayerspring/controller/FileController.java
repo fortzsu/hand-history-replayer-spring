@@ -26,12 +26,13 @@ public class FileController {
     }
 
     @PostMapping("/uploadFile")
-    public void uploadFile(@RequestParam("text") MultipartFile file) {
+    public void uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
         String fileName = fileStorageService.storeFile(file);
         ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/resources")
                 .path(fileName)
                 .toUriString();
+        this.fileReaderService.readFromFile();
     }
 
     @GetMapping("")
