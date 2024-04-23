@@ -74,4 +74,7 @@ public class HandService {
         return this.actionService.findActionsByPlayer(hand);
     }
 
+    public List<Hand> findAll() {
+        return this.handRepository.findAll();
+    }
 }

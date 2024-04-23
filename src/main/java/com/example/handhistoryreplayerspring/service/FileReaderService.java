@@ -3,6 +3,7 @@ package com.example.handhistoryreplayerspring.service;
 import com.example.handhistoryreplayerspring.domain.Action;
 import com.example.handhistoryreplayerspring.domain.Hand;
 import com.example.handhistoryreplayerspring.domain.Player;
+import com.example.handhistoryreplayerspring.dto.HandDataDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,21 +30,6 @@ public class FileReaderService {
         Path path = Paths.get("C:\\Users\\Zsuzsi\\Desktop\\Idea\\hand-history-replayer-spring\\src\\main\\resources\\file.txt");
         List<String> lines = Files.readAllLines(path);
         List<Hand> hands = findOriginalDataBlocks(lines);
-        for (Hand hand : hands) {
-            System.out.println(hand.getId());
-//            System.out.println(hand.getCurrentButton());
-//            System.out.println(hand.getCards());
-            List<Action> actionsByPlayer = this.handService.findActionsByPlayer(hand);
-            for (Action dto : actionsByPlayer) {
-                System.out.println(dto.getPlayer().getPlayerName() + " - " + dto.getAction());
-            }
-            for (Player player : hand.getPlayers()) {
-                System.out.println(player.getPlayerName() + " : " + player.getNameOfPosition());
-//                System.out.println(player.getSeatNumber());
-//                System.out.println(player.getNameOfPosition());
-            }
-            System.out.println("**************************************************");
-        }
         return hands;
     }
 
@@ -74,4 +60,6 @@ public class FileReaderService {
     public Hand fillHands(Integer id, List<String> originalLines) {
         return this.handService.saveHand(originalLines, id);
     }
+
+
 }
