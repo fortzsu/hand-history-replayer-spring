@@ -10,7 +10,6 @@ public class HandDataDto {
     private String firstImgSource;
     private String secondImgSource;
     private String chipsInBigBlind;
-    private String playerAction;
     private String actualPosition;
     private List<String> actions;
 
@@ -34,9 +33,6 @@ public class HandDataDto {
         return chipsInBigBlind;
     }
 
-    public String getPlayerAction() {
-        return playerAction;
-    }
 
     public String getActualPosition() {
         return actualPosition;
@@ -58,9 +54,6 @@ public class HandDataDto {
         this.chipsInBigBlind = chipsInBigBlind;
     }
 
-    public void setPlayerAction(String playerAction) {
-        this.playerAction = playerAction;
-    }
 
     public void setActualPosition(String actualPosition) {
         this.actualPosition = actualPosition;

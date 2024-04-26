@@ -1,8 +1,8 @@
 export class HandDataDto {
+    id: number = 0;
     firstImgSource: string = '';
     secondImgSource: string = '';
     chipsInBigBlind: string = '';
-    playerAction: string = '';
     actualPosition: string = '';
     actions: Array<string> = [];
 }
