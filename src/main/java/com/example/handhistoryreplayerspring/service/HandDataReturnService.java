@@ -4,6 +4,8 @@ import com.example.handhistoryreplayerspring.domain.Action;
 import com.example.handhistoryreplayerspring.domain.Hand;
 import com.example.handhistoryreplayerspring.domain.Player;
 import com.example.handhistoryreplayerspring.dto.HandDataDto;
+import com.example.handhistoryreplayerspring.repository.ActionRepository;
+import com.example.handhistoryreplayerspring.repository.PlayerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,48 +15,59 @@ import java.util.List;
 public class HandDataReturnService {
 
     private final HandService handService;
+    private final PlayerRepository playerRepository;
+    private final ActionRepository actionRepository;
 
-    public HandDataReturnService(HandService handService) {
+    public HandDataReturnService(HandService handService, PlayerRepository playerRepository, ActionRepository actionRepository) {
         this.handService = handService;
+        this.playerRepository = playerRepository;
+        this.actionRepository = actionRepository;
     }
 
     public List<HandDataDto> getDataFromHand() {
+        List<HandDataDto> dtoList = new ArrayList<>();
         List<Hand> hands = this.handService.findAll();
         for (Hand hand : hands) {
-            System.out.println(hand.getId());
-//            System.out.println(hand.getCurrentButton());
-//            System.out.println(hand.getCards());
-            List<Action> actionsByHand = this.handService.findActionsByHand(hand);
-            for (Action dto : actionsByHand) {
-                System.out.println(dto.getPlayer().getPlayerName() + " - " + dto.getAction());
-            }
-            for (Player player : hand.getPlayers()) {
-                System.out.println(player.getPlayerName() + " : " + player.getNameOfPosition());
-//                System.out.println(player.getSeatNumber());
-//                System.out.println(player.getNameOfPosition());
-            }
-            System.out.println("**************************************************");
+            List<Player> players = this.playerRepository.findPlayersByHand(hand);
+            List<Action> actions = this.actionRepository.findAllByHand(hand);
+            HandDataDto temp = createDtoFromHand(hand, players, actions);
+            dtoList.add(temp);
         }
-        return new ArrayList<>();
+//        for (HandDataDto dto : dtoList) {
+//            System.out.println(dto.getId());
+//            System.out.println(dto.getFirstImgSource());
+//            System.out.println(dto.getSecondImgSource());
+//            System.out.println(dto.getPlayerAction());
+//            System.out.println(dto.getActualPosition());
+//            System.out.println(dto.getChipsInBigBlind());
+//            for (Action action : dto.getActions()) {
+//                System.out.println(action);
+//            }
+//            System.out.println("***********************************");
+//        }
+        return dtoList;
     }
 
-    private HandDataDto createDtoFromHand(Hand hand) {
+    private HandDataDto createDtoFromHand(Hand hand, List<Player> players, List<Action> actions) {
         HandDataDto resultDto = new HandDataDto();
         resultDto.setId(hand.getId());
         resultDto.setFirstImgSource(hand.getCards().get(0));
         resultDto.setSecondImgSource(hand.getCards().get(1));
-        for (Player player : hand.getPlayers()) {
-            if(player.getPlayerName().equals("ZombiChicken")) {
+        for (Player player : players) {
+            if (player.getPlayerName().equals("ZombiChicken")) {
                 addPlayerDataToDto(player, resultDto);
             }
         }
-        resultDto.setActions(hand.getActions());
+        List<String> actionString = new ArrayList<>();
+        for (Action action : actions) {
+            actionString.add(action.getAction());
+        }
+        resultDto.setActions(actionString);
         return resultDto;
     }
 
     private void addPlayerDataToDto(Player player, HandDataDto resultDto) {
         resultDto.setActualPosition(player.getNameOfPosition());
         resultDto.setChipsInBigBlind(player.getChipsInBigBlind());
-//        resultDto.setPlayerAction(player.);
     }
 }

@@ -12,7 +12,7 @@ public class HandDataDto {
     private String chipsInBigBlind;
     private String playerAction;
     private String actualPosition;
-    private List<Action> actions;
+    private List<String> actions;
 
     public Integer getId() {
         return id;
@@ -42,7 +42,7 @@ public class HandDataDto {
         return actualPosition;
     }
 
-    public List<Action> getActions() {
+    public List<String> getActions() {
         return actions;
     }
 
@@ -66,7 +66,7 @@ public class HandDataDto {
         this.actualPosition = actualPosition;
     }
 
-    public void setActions(List<Action> actions) {
+    public void setActions(List<String> actions) {
         this.actions = actions;
     }
 }
