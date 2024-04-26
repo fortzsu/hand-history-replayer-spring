@@ -14,8 +14,8 @@
       </thead>
       <tbody>
       <tr *ngFor="let user of users">
-        <td>{{ user.firstImgSource }}</td>
-        <td>{{ user.secondImgSource }}</td>
+        <td class="my-img"> <img src="assets/card/{{user.firstImgSource}}.png" alt=""> </td>
+        <td class="my-img"> <img src="assets/card/{{user.secondImgSource}}.png" alt=""> </td>
         <td>{{ user.chipsInBigBlind }}</td>
         <td>{{ user.actualPosition }}</td>
       </tr>
