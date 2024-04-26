@@ -14,8 +14,6 @@ public class Hand {
     @Column
     private Integer currentButton;
     @Column
-    private Integer actionCounter;
-    @Column
     private final List<String> cards = new ArrayList<>();
     @Column
     @OneToMany
@@ -49,14 +47,6 @@ public class Hand {
 
     public void setCurrentButton(Integer currentButton) {
         this.currentButton = currentButton;
-    }
-
-    public Integer getActionCounter() {
-        return actionCounter;
-    }
-
-    public void setActionCounter() {
-        this.actionCounter = 1;
     }
 
     public List<String> getCards() {

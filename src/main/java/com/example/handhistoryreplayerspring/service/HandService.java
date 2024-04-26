@@ -70,7 +70,7 @@ public class HandService {
         this.positionGeneratorService.findPosition(players, defaultPositions, currentButton);
     }
 
-    public List<Action> findActionsByPlayer(Hand hand) {
+    public List<Action> findActionsByHand(Hand hand) {
         return this.actionService.findActionsByPlayer(hand);
     }
 

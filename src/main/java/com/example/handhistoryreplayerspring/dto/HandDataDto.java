@@ -1,16 +1,26 @@
 package com.example.handhistoryreplayerspring.dto;
 
+import com.example.handhistoryreplayerspring.domain.Action;
 import com.example.handhistoryreplayerspring.domain.Hand;
 
 import java.util.List;
 
 public class HandDataDto {
+    private Integer id;
     private String firstImgSource;
     private String secondImgSource;
     private String chipsInBigBlind;
     private String playerAction;
     private String actualPosition;
-    private List<String> actions;
+    private List<Action> actions;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getFirstImgSource() {
         return firstImgSource;
@@ -32,7 +42,7 @@ public class HandDataDto {
         return actualPosition;
     }
 
-    public List<String> getActions() {
+    public List<Action> getActions() {
         return actions;
     }
 
@@ -56,7 +66,7 @@ public class HandDataDto {
         this.actualPosition = actualPosition;
     }
 
-    public void setActions(List<String> actions) {
+    public void setActions(List<Action> actions) {
         this.actions = actions;
     }
 }

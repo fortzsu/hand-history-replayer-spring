@@ -101,4 +101,8 @@ public class Player {
     public void addAction(Action action) {
         this.actions.add(action);
     }
+
+    public String getChipsInBigBlind() {
+        return chipsInBigBlind;
+    }
 }

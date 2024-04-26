@@ -24,8 +24,8 @@ public class HandDataReturnService {
             System.out.println(hand.getId());
 //            System.out.println(hand.getCurrentButton());
 //            System.out.println(hand.getCards());
-            List<Action> actionsByPlayer = this.handService.findActionsByPlayer(hand);
-            for (Action dto : actionsByPlayer) {
+            List<Action> actionsByHand = this.handService.findActionsByHand(hand);
+            for (Action dto : actionsByHand) {
                 System.out.println(dto.getPlayer().getPlayerName() + " - " + dto.getAction());
             }
             for (Player player : hand.getPlayers()) {
@@ -36,5 +36,25 @@ public class HandDataReturnService {
             System.out.println("**************************************************");
         }
         return new ArrayList<>();
+    }
+
+    private HandDataDto createDtoFromHand(Hand hand) {
+        HandDataDto resultDto = new HandDataDto();
+        resultDto.setId(hand.getId());
+        resultDto.setFirstImgSource(hand.getCards().get(0));
+        resultDto.setSecondImgSource(hand.getCards().get(1));
+        for (Player player : hand.getPlayers()) {
+            if(player.getPlayerName().equals("ZombiChicken")) {
+                addPlayerDataToDto(player, resultDto);
+            }
+        }
+        resultDto.setActions(hand.getActions());
+        return resultDto;
+    }
+
+    private void addPlayerDataToDto(Player player, HandDataDto resultDto) {
+        resultDto.setActualPosition(player.getNameOfPosition());
+        resultDto.setChipsInBigBlind(player.getChipsInBigBlind());
+//        resultDto.setPlayerAction(player.);
     }
 }
