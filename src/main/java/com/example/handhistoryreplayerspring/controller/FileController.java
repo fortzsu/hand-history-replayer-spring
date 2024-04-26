@@ -35,8 +35,8 @@ public class FileController {
     @PostMapping("/uploadFile")
     public void uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
         String fileName = fileStorageService.storeFile(file);
-        ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/resources")
+        String result = ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/src/main/resources")
                 .path(fileName)
                 .toUriString();
         this.fileReaderService.readFromFile();
@@ -46,7 +46,6 @@ public class FileController {
     public List<HandDataDto> getDataFromHand() {
         return this.handDataReturnService.getDataFromHand();
     }
-
 
 
 }

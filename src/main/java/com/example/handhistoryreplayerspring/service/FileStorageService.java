@@ -19,7 +19,7 @@ public class FileStorageService {
 
     @Autowired
     public FileStorageService() {
-        this.fileStorageLocation = Paths.get("C:\\Users\\Zsuzsi\\Desktop\\Idea\\hand-history-replayer-spring\\src\\main\\resources")
+        this.fileStorageLocation = Paths.get("src/main/resources")
                 .toAbsolutePath().normalize();
         try {
             Files.createDirectories(this.fileStorageLocation);
