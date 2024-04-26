@@ -1,5 +1,7 @@
 package com.example.handhistoryreplayerspring.dto;
 
+import com.example.handhistoryreplayerspring.domain.Hand;
+
 import java.util.List;
 
 public class HandDataDto {
@@ -9,17 +11,6 @@ public class HandDataDto {
     private String playerAction;
     private String actualPosition;
     private List<String> actions;
-
-    public HandDataDto(String firstImgSource, String secondImgSource,
-                       String chipsInBigBlind, String playerAction,
-                       String actualPosition, List<String> actions) {
-        this.firstImgSource = firstImgSource;
-        this.secondImgSource = secondImgSource;
-        this.chipsInBigBlind = chipsInBigBlind;
-        this.playerAction = playerAction;
-        this.actualPosition = actualPosition;
-        this.actions = actions;
-    }
 
     public String getFirstImgSource() {
         return firstImgSource;

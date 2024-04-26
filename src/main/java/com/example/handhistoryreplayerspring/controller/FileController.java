@@ -33,18 +33,20 @@ public class FileController {
     }
 
     @PostMapping("/uploadFile")
-    public void uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
+    public void uploadFile(@RequestParam("file") MultipartFile file) {
         String fileName = fileStorageService.storeFile(file);
-        String result = ServletUriComponentsBuilder.fromCurrentContextPath()
+        ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/src/main/resources")
                 .path(fileName)
                 .toUriString();
-        this.fileReaderService.readFromFile();
     }
 
     @GetMapping("/getData")
-    public List<HandDataDto> getDataFromHand() {
-        return this.handDataReturnService.getDataFromHand();
+    public List<HandDataDto> getDataFromHand() throws IOException {
+        this.fileReaderService.readFromFile();
+        List<HandDataDto> dtoList = this.handDataReturnService.getDataFromHand();
+        System.out.println(dtoList);
+        return dtoList;
     }
 
 

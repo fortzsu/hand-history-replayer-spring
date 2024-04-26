@@ -45,7 +45,7 @@ public class PositionGeneratorService {
                 orderOfCurrentPositions.put(current.get(k), String.valueOf(defaultPositions.get(j)));
             }
         } else {
-            throw new NegativeArraySizeException();
+            throw new ArrayIndexOutOfBoundsException();
         }
     }
 

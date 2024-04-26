@@ -4,7 +4,7 @@ import { UserListComponent } from './user-list/user-list.component';
 import { UploadFormComponent } from './upload-form/upload-form.component';
 
 const routes: Routes = [
-  { path: 'users', component: UserListComponent },
+  { path: 'hands', component: UserListComponent },
   { path: 'upload', component: UploadFormComponent }
 ];
 

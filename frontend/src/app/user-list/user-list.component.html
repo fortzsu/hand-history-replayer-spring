@@ -1,18 +1,25 @@
 <div class="card my-5">
   <div class="card-body">
+    <li class="list-inline-item">
+      <button class="btn btn-info" (click)="onSave()">Save</button>
+    </li>
     <table class="table table-bordered table-striped">
       <thead class="thead-dark">
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
+        <th scope="col">Card</th>
+        <th scope="col">Card</th>
+        <th scope="col">Chips</th>
+        <th scope="col">PlayerAction</th>
+        <th scope="col">Position</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let user of users">
-        <td>{{ user.id }}</td>
-        <td>{{ user.name }}</td>
-        <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+        <td>{{ user.firstImgSource }}</td>
+        <td>{{ user.secondImgSource }}</td>
+        <td>{{ user.chipsInBigBlind }}</td>
+        <td>{{ user.playerAction }}</td>
+        <td>{{ user.actualPosition }}</td>
       </tr>
       </tbody>
     </table>

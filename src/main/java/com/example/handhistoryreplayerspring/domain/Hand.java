@@ -20,7 +20,6 @@ public class Hand {
     @Column
     @OneToMany
     private List<Player> players = new ArrayList<>();
-
     @Column
     @OneToMany
     private List<Action> actions = new ArrayList<>();

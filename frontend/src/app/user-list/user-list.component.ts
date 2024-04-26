@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../model/user';
+import { HandDataDto } from '../model/hand-data-dto';
 import { UserService } from '../service/user-service.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { UserService } from '../service/user-service.service';
 })
 export class UserListComponent implements OnInit {
 
-  users: User[] = [];
+  users: HandDataDto[] = [];
 
   constructor(private userService: UserService) {
   }
@@ -18,5 +18,11 @@ export class UserListComponent implements OnInit {
     this.userService.findAll().subscribe((data:any) => {
       this.users = data;
     });
+  }
+
+  onSave() {
+      this.userService.findAll().subscribe((data:any) => {
+        this.users = data;
+      });
   }
 }
