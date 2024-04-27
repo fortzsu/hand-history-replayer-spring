@@ -20,21 +20,24 @@ import java.util.Map;
 public class FileReaderService {
 
     private final HandService handService;
+    private Integer counter = 0;
 
     @Autowired
     public FileReaderService(HandService handService) {
         this.handService = handService;
     }
 
-    public List<Hand> readFromFile() throws IOException {
-        Path path = Paths.get("src/main/resources/file.txt");
-        List<String> lines = Files.readAllLines(path);
-        List<Hand> hands = findOriginalDataBlocks(lines);
-        System.out.println(hands.size());
-        return hands;
+    public void readFromFile() throws IOException {
+        List<String> lines = new ArrayList<>();
+        if(this.counter.equals(0)) {
+            Path path = Paths.get("src/main/resources/file.txt");
+            lines = Files.readAllLines(path);
+            this.counter++;
+        }
+        findOriginalDataBlocks(lines);
     }
 
-    private List<Hand> findOriginalDataBlocks(List<String> lines) {
+    private void findOriginalDataBlocks(List<String> lines) {
         Map<Integer, List<String>> originalDataBlocks = new HashMap<>();
         int counter = 0;
         for (String line : lines) {
@@ -47,19 +50,17 @@ public class FileReaderService {
                 originalDataBlocks.get(counter).add(line);
             }
         }
-        return fillHands(originalDataBlocks);
+        fillHands(originalDataBlocks);
     }
 
-    private List<Hand> fillHands(Map<Integer, List<String>> originalDataBlocks) {
-        List<Hand> hands = new ArrayList<>();
+    private void fillHands(Map<Integer, List<String>> originalDataBlocks) {
         for (Map.Entry<Integer, List<String>> entry : originalDataBlocks.entrySet()) {
-            hands.add(fillHands(entry.getKey(), entry.getValue()));
+            fillHands(entry.getKey(), entry.getValue());
         }
-        return hands;
     }
 
-    public Hand fillHands(Integer id, List<String> originalLines) {
-        return this.handService.saveHand(originalLines, id);
+    public void fillHands(Integer id, List<String> originalLines) {
+        this.handService.saveHand(originalLines, id);
     }
 
 

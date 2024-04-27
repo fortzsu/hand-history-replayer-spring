@@ -45,7 +45,9 @@ public class FileController {
     public List<HandDataDto> getDataFromHand() throws IOException {
         this.fileReaderService.readFromFile();
         List<HandDataDto> dtoList = this.handDataReturnService.getDataFromHand();
-        System.out.println(dtoList);
+        if(dtoList.size() != 0) {
+            this.fileStorageService.deleteFile();
+        }
         return dtoList;
     }
 

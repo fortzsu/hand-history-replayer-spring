@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -32,7 +33,7 @@ public class FileStorageService {
         String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
 
         try {
-            if(fileName.contains("..")) {
+            if (fileName.contains("..")) {
                 //throw TODO
             }
             Path targetLocation = this.fileStorageLocation.resolve(fileName);
@@ -42,5 +43,10 @@ public class FileStorageService {
             //throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
         }
         return fileName;
+    }
+
+    public void deleteFile() {
+        File myObj = new File("src/main/resources/file.txt");
+        myObj.delete();
     }
 }
