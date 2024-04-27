@@ -5,9 +5,6 @@
         <div class="card-body">
           <h2 class="card-title text-center text-white py-3">{{ title }}</h2>
           <ul class="text-center list-inline py-3">
-<!--            <li class="list-inline-item">-->
-<!--              <a routerLink="/upload" class="btn btn-info">Upload file</a>-->
-<!--            </li>-->
             <input  type="file" id="file" (change)="onChangeFile($event)">
             <li class="list-inline-item">
               <a routerLink="/hands" class="btn btn-info">List Hands</a>

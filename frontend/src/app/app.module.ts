@@ -6,13 +6,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserService } from './service/user-service.service';
-import { UploadFormComponent } from './upload-form/upload-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserListComponent,
-    UploadFormComponent
+    UserListComponent
   ],
   imports: [
     BrowserModule,
