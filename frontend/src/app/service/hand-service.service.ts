@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 @Injectable()
-export class UserService {
+export class HandService {
 
   private usersUrl: string;
 
