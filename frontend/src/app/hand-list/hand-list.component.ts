@@ -3,11 +3,10 @@ import { HandDataDto } from '../model/hand-data-dto';
 import { HandService } from '../service/hand-service.service';
 
 @Component({
-  selector: 'app-user-list',
-  templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
-})
-export class UserListComponent implements OnInit {
+  selector: 'app-hand-list',
+  templateUrl: './hand-list.component.html'
+ })
+export class HandListComponent implements OnInit {
 
   users: HandDataDto[] = [];
 

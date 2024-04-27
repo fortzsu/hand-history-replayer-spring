@@ -4,13 +4,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { UserListComponent } from './user-list/user-list.component';
+import { HandListComponent } from './hand-list/hand-list.component';
 import { HandService } from './service/hand-service.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserListComponent
+    HandListComponent
   ],
   imports: [
     BrowserModule,
