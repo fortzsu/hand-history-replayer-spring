@@ -6,15 +6,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   templateUrl: './upload-form.component.html',
   styleUrl: './upload-form.component.css'
 })
-export class UploadFormComponent implements OnInit{
+export class UploadFormComponent{
 
   private usersUrl: string;
 
   constructor(private http: HttpClient) {
     this.usersUrl = 'http://localhost:8080/api/file/uploadFile';
-  }
-
-  ngOnInit(): void {
   }
 
   onChangeFile(event:any) {
