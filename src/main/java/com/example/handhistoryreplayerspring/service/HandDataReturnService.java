@@ -60,11 +60,7 @@ public class HandDataReturnService {
         }
         List<String> actionString = new ArrayList<>();
         for (Action action : actions) {
-            if(action.getPlayer().getPlayerName().equals("ZombiChicken")) {
-                actionString.add(action.getPlayer().getPlayerName() + " - " + action.getAction());
-            } else {
-                actionString.add(action.getAction());
-            }
+            actionString.add(action.getPlayer().getPlayerName() + " - " + action.getAction());
         }
         resultDto.setActions(actionString);
         return resultDto;

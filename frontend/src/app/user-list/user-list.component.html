@@ -10,14 +10,16 @@
         <th scope="col">Card</th>
         <th scope="col">Chips</th>
         <th scope="col">Position</th>
+        <th scope="col">Actions</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let user of users">
-        <td><img style="width:30%;" src="assets/card/{{user.firstImgSource}}.png" alt=""></td>
-        <td><img style="width:30%;" src="assets/card/{{user.secondImgSource}}.png" alt=""></td>
+        <td><img style="width:50%;" src="assets/card/{{user.firstImgSource}}.png" alt=""></td>
+        <td><img style="width:50%;" src="assets/card/{{user.secondImgSource}}.png" alt=""></td>
         <td>{{ user.chipsInBigBlind }}</td>
         <td>{{ user.actualPosition }}</td>
+        <td style="white-space:pre">{{ user.actions.join('\n ') }}</td>
       </tr>
       </tbody>
     </table>
