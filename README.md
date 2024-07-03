@@ -5,7 +5,7 @@
 ![CSS](https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white)
 
 ## General Information
-- Full-Stack Application for parsing Poker Hands from a specific document to Java objects, and display the values 
+- Full-Stack Application for parsing Poker Hands from a specific document to Java objects and display the values 
 - The app shows the results of one player, but stores all the results of the whole hand as well
 - The main logic is stored in a PositionGenerator class - where the program counts all the current players positions like they were sitting by a real table
 
