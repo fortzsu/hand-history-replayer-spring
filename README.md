@@ -5,8 +5,8 @@
 ![CSS](https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white)
 
 ## General Information
-- Full-Stack Application for parsing Poker Hands from a specific document to Java objects and display the values 
-- The app shows the results of one player, but stores all the results of the whole hand as well
+- Full-Stack Application for parsing Poker Hand History files (PokerStars platform) to Java objects and display cards on frontend
+- The app shows the hands played by one player
 - The main logic is stored in a PositionGenerator class - where the program counts all the current players positions like they were sitting by a real table
 
 ## Technologies Used
@@ -17,12 +17,12 @@
 ## Usage
  - The application runs on Localhost
  - Backend (localhost: 8080): run HandHistoryReplayerSpringApplication.java
- - Frontend (localhost: 4200): cd frontend folder | npm i | ng s --open
+ - Frontend (localhost: 4200): cd frontend folder | npm i | ng serve --open
    (Node.js, Angular CLI needed)
- - Running app:  
-1 - The user could upload the file (stored in resources/templates folder for trial purposes)  
-2 - Click to the Hand button  
-3 - The app shows the details of the Poker Hands  
+   
+ - The running app has:  
+1 - A button to upload the Hand history file (an example file is stored in resources/templates folder)  
+2 - A button to show the played hands and further details 
 
 ## Room for improvement
  - Now works only for a hardcoded user
