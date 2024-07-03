@@ -5,9 +5,8 @@
 ![CSS](https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white)
 
 ## General Information
-- Application for parsing Poker Hands from document to Java objects, and display the values in HTML.
+- Full-Stack Application for parsing Poker Hands from a specific document to Java objects, and display the values 
 - The app shows the results of one player, but stores all the results of the whole hand as well
-- The cards are shown with JPG images, further the current chips and all the actions are listed
 - The main logic is stored in a PositionGenerator class - where the program counts all the current players positions like they were sitting by a real table
 
 ## Technologies Used
@@ -20,7 +19,14 @@
  - Backend (localhost: 8080): run HandHistoryReplayerSpringApplication.java
  - Frontend (localhost: 4200): cd frontend folder | npm i | ng s --open
    (Node.js, Angular CLI needed)
- 
+ - Running app: 
+1 - The user could upload the file (stored in resources folder for trial purposes)
+2 - Click to the Hand button
+3 - The app shows the details of the Poker Hands
+
+## Room for improvement
+ - Now works only for a hardcoded user
+
 ![home.png](home.png)
 ![hand.png](hand.png)
 
