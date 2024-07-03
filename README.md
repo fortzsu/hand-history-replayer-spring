@@ -19,10 +19,10 @@
  - Backend (localhost: 8080): run HandHistoryReplayerSpringApplication.java
  - Frontend (localhost: 4200): cd frontend folder | npm i | ng s --open
    (Node.js, Angular CLI needed)
- - Running app: 
-1 - The user could upload the file (stored in resources folder for trial purposes)
-2 - Click to the Hand button
-3 - The app shows the details of the Poker Hands
+ - Running app:  
+1 - The user could upload the file (stored in resources/templates folder for trial purposes)  
+2 - Click to the Hand button  
+3 - The app shows the details of the Poker Hands  
 
 ## Room for improvement
  - Now works only for a hardcoded user
