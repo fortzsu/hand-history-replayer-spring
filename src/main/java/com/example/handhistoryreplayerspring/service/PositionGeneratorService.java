@@ -26,7 +26,6 @@ public class PositionGeneratorService {
 
     }
 
-
     private void addPositionWhenThereAreMorePlayers(Map<Integer, String> orderOfCurrentPositions, Integer currentButton,
                                                            List<Position> defaultPositions, List<Player> players) throws NegativeArraySizeException{
         List<Integer> current = fillCurrentPlayersList(players);
